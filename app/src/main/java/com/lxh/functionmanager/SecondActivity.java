@@ -18,6 +18,7 @@ public class SecondActivity extends AppCompatActivity {
         findViewById(R.id.npnt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                res.setText("");
                 FunctionManager.getInstance().invokeFunction(tag+"npnt");
             }
         });
@@ -25,6 +26,7 @@ public class SecondActivity extends AppCompatActivity {
         findViewById(R.id.npht).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                res.setText("");
                 MainActivity.User user = FunctionManager.getInstance().invokeFunction(tag+"npht", MainActivity.User.class);
                 res.setText("result:"+user.toString());
             }
@@ -33,6 +35,7 @@ public class SecondActivity extends AppCompatActivity {
         findViewById(R.id.hpnt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                res.setText("");
                 MainActivity.User user = new MainActivity.User("有参无返回值的参数","hpnt");
                 FunctionManager.getInstance().invokeFunction(tag+"hpnt",user);
             }
@@ -41,6 +44,7 @@ public class SecondActivity extends AppCompatActivity {
         findViewById(R.id.hpht).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                res.setText("");
                 MainActivity.User user = new MainActivity.User("有参有返回值的参数","hpht");
                 MainActivity.User user1 = FunctionManager.getInstance().invokeFunction(tag+"hpht",user, MainActivity.User.class);
                 res.setText("result:"+user1.toString());
