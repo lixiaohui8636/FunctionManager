@@ -4,13 +4,14 @@ Android不同类（组件） 之间通信的一个工具，完全解耦
 
 使用方法：
 1.无参无返回值的方法
+    
     public void addFunction(NoParamNoResultFunction function){
         if(mNoParamHasResultMap == null){
             return;
         }
         mNoParamNoResultMap.put(function.getName(), function);
     }
-
+    
     public void invokeFunction(String functionName){
         if(TextUtils.isEmpty(functionName)){
             return;
@@ -25,6 +26,7 @@ Android不同类（组件） 之间通信的一个工具，完全解耦
         }
 
 2.无参有返回值的方法
+
     public void addFunction(NoParamHasResultFunction function){
         if(mNoParamHasResultMap == null){
             return;
@@ -49,6 +51,7 @@ Android不同类（组件） 之间通信的一个工具，完全解耦
     }
 
 3.有参无返回值的方法
+
     public void addFunction(HasParamNoResultFunction function){
         if(mHasParamNoResultMap == null){
             return;
@@ -71,13 +74,14 @@ Android不同类（组件） 之间通信的一个工具，完全解耦
     }
 
 4.有参有返回值的方法
-   public void addFunction(HasParamHasResultFunction hasParamHasResultFunction){
+
+    public void addFunction(HasParamHasResultFunction hasParamHasResultFunction){
         if(mHasParamHasResultMap == null){
             return;
         }
         mHasParamHasResultMap.put(hasParamHasResultFunction.getName(),hasParamHasResultFunction);
     }
-
+    
     public <T,P> T invokeFunction(String functionName, P p, Class<T> tClass){
         if(TextUtils.isEmpty(functionName)){
             return null;
@@ -93,4 +97,12 @@ Android不同类（组件） 之间通信的一个工具，完全解耦
             }
         }
         return null;
+    }
+
+5.在onDestroy中调用remove方法，及时释放对应的方法引用
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FunctionManager.getInstance().removeFunction("xxx");
     }
